@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agency Partner Program — theprofitfactory.ai</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a1a2e;
+      --navy-mid: #16213e;
+      --navy-light: #0f3460;
+      --gold: #f4c430;
+      --gold-dark: #d4a017;
+      --white: #ffffff;
+      --light: #e8e8f0;
+      --muted: #a0a0b8;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    .section { padding: 64px 0; }
+    .section--alt { background: var(--navy-mid); }
+    .section--dark { background: var(--navy-light); }
+
+    /* ─── NAV ─── */
+    nav {
+      background: var(--navy);
+      border-bottom: 1px solid rgba(244,196,48,.2);
+      padding: 16px 20px;
+      text-align: center;
+    }
+    nav .brand {
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ─── URGENCY BANNER ─── */
+    .banner {
+      background: var(--gold);
+      color: var(--navy);
+      text-align: center;
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: .92rem;
+      letter-spacing: .04em;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 80px 20px 64px;
+      text-align: center;
+    }
+    .hero__eyebrow {
+      display: inline-block;
+      background: rgba(244,196,48,.15);
+      color: var(--gold);
+      border: 1px solid rgba(244,196,48,.35);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -.01em;
+    }
+    .hero h1 .accent { color: var(--gold); }
+    .hero__sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--light);
+      max-width: 620px;
+      margin: 0 auto 40px;
+    }
+    .hero__spots {
+      display: inline-block;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px;
+      padding: 8px 20px;
+      font-size: .88rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    .hero__spots strong { color: var(--gold); }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: opacity .18s, transform .18s;
+    }
+    .btn:hover { opacity: .88; transform: translateY(-1px); }
+    .btn--gold { background: var(--gold); color: var(--navy); }
+    .btn--outline {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+    }
+
+    /* ─── WHAT YOU GET ─── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .benefit-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+    .benefit-card__icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .benefit-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .benefit-card p {
+      font-size: .93rem;
+      color: var(--light);
+    }
+
+    /* ─── SECTION HEADINGS ─── */
+    .section-label {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--muted);
+      max-width: 580px;
+    }
+
+    /* ─── ROI CALCULATOR ─── */
+    .roi-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 36px;
+      font-size: .95rem;
+    }
+    .roi-table th {
+      background: var(--navy-light);
+      color: var(--gold);
+      text-align: left;
+      padding: 14px 18px;
+      font-size: .82rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .roi-table th:not(:first-child) { text-align: center; }
+    .roi-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .roi-table td:not(:first-child) { text-align: center; }
+    .roi-table tr:last-child td { border-bottom: none; }
+    .roi-table .highlight td {
+      background: rgba(244,196,48,.07);
+      font-weight: 700;
+      color: var(--white);
+    }
+    .roi-table .highlight .big {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+    .roi-note {
+      margin-top: 16px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+    .testimonial-card__quote {
+      font-size: .95rem;
+      color: var(--light);
+      margin-bottom: 20px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+    .testimonial-card__quote::before { content: '\201C'; color: var(--gold); font-size: 1.4rem; font-style: normal; }
+    .testimonial-card__author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-card__avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--navy-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: .95rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .testimonial-card__name {
+      font-weight: 700;
+      font-size: .9rem;
+    }
+    .testimonial-card__role {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+    .stars { color: var(--gold); font-size: .85rem; margin-bottom: 12px; }
+
+    /* ─── APPLY FORM ─── */
+    .apply-section {
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+    }
+    .apply-form {
+      max-width: 560px;
+      margin: 40px auto 0;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px;
+      padding: 36px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--light);
+      margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-size: .95rem;
+      font-family: inherit;
+      transition: border-color .18s;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,.09);
+    }
+    .form-group input::placeholder { color: var(--muted); }
+    .form-submit {
+      width: 100%;
+      padding: 15px;
+      font-size: 1rem;
+      font-family: inherit;
+      border-radius: var(--radius);
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      transition: opacity .18s, transform .18s;
+      margin-top: 6px;
+    }
+    .form-submit:hover { opacity: .88; transform: translateY(-1px); }
+    .form-disclaimer {
+      text-align: center;
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,.07);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .apply-form { padding: 24px 18px; }
+      .roi-table th, .roi-table td { padding: 10px 10px; font-size: .82rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="brand">theprofitfactory.ai — Agency Partners</span>
+  </nav>
+
+  <!-- URGENCY BANNER -->
+  <div class="banner">
+    ⚡ Only 20 partner spots available — 14 already claimed. Apply before they're gone.
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__eyebrow">White-Label Partner Program</div>
+      <h1>Add <span class="accent">€5,000–15,000/mo</span><br>to Your Agency Revenue</h1>
+      <p class="hero__sub">
+        Offer your clients a fully branded AI Automation Toolkit — without building anything.
+        We handle the tech. You keep the margin.
+      </p>
+      <div class="hero__spots">
+        <strong>6 spots remaining</strong> — Applications close when they're gone
+      </div>
+      <br>
+      <a href="#apply" class="btn btn--gold">Apply for Partner Access →</a>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-label">Partner Benefits</div>
+      <div class="section-title">Everything You Need to Resell</div>
+      <p class="section-sub">
+        White-label our proven AI Toolkit and deliver it to your clients under your own brand — zero dev time required.
+      </p>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-card__icon">🏷️</div>
+          <h3>Full White-Label Rights</h3>
+          <p>Rebrand the entire toolkit with your logo, colors, and domain. Clients never see our name.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-card__icon">🎨</div>
+          <h3>Custom Branding Kit</h3>
+          <p>We deliver a brand-matched version within 48 hours — pitch decks, onboarding emails, and client-facing docs included.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-card__icon">🖥️</div>
+          <h3>Client Portal Access</h3>
+          <p>Give your clients a branded dashboard to track automation results, deliverables, and ROI metrics.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-card__icon">📞</div>
+          <h3>Dedicated Partner Support</h3>
+          <p>Your own Slack channel with our team. Onboarding calls, technical help, and sales enablement included.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-card__icon">💰</div>
+          <h3>High-Margin Pricing</h3>
+          <p>You set your own prices. Our wholesale rate leaves room for 60–80% gross margin per client.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-card__icon">📈</div>
+          <h3>Done-For-You Sales Materials</h3>
+          <p>Proposal templates, case studies, and objection-handling scripts — ready to deploy on day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI CALCULATOR -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-label">Revenue Scenarios</div>
+      <div class="section-title">What Does This Look Like in Practice?</div>
+      <p class="section-sub">
+        Three real scenarios based on current partner results. Your margin depends on how you price it.
+      </p>
+      <table class="roi-table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th># of Clients</th>
+            <th>Your Monthly Rate</th>
+            <th>Gross Monthly Revenue</th>
+            <th>Est. Monthly Profit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Starter</strong><br><span style="font-size:.82rem;color:var(--muted)">Just getting started</span></td>
+            <td>5</td>
+            <td>€1,000/mo</td>
+            <td>€5,000/mo</td>
+            <td style="color:var(--gold)">€3,000–3,500/mo</td>
+          </tr>
+          <tr>
+            <td><strong>Growth</strong><br><span style="font-size:.82rem;color:var(--muted)">Established agency</span></td>
+            <td>10</td>
+            <td>€1,200/mo</td>
+            <td>€12,000/mo</td>
+            <td style="color:var(--gold)">€7,500–9,000/mo</td>
+          </tr>
+          <tr class="highlight">
+            <td><strong>Scale</strong><br><span style="font-size:.82rem;color:var(--muted)">Full deployment</span></td>
+            <td>20</td>
+            <td>€1,500/mo</td>
+            <td>€30,000/mo</td>
+            <td class="big">€20,000–24,000/mo</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="roi-note">* Estimates based on typical partner wholesale costs + operational overhead. Actual results vary by market and pricing strategy.</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-label">Partner Stories</div>
+      <div class="section-title">Agencies Already Scaling With Us</div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            We added €8,400/mo in pure recurring revenue within 60 days of joining. Our clients love the branded portal — they think we built it ourselves.
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">MV</div>
+            <div>
+              <div class="testimonial-card__name">Marc van der Berg</div>
+              <div class="testimonial-card__role">Founder, Velocity Digital (Amsterdam)</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            I was skeptical about reselling someone else's product. But the white-label setup is so complete that it genuinely feels like ours. Onboarded 7 clients in the first month.
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">SL</div>
+            <div>
+              <div class="testimonial-card__name">Sophie Laurent</div>
+              <div class="testimonial-card__role">CEO, Lumière Agence (Brussels)</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            The sales materials alone saved me 40+ hours. Proposal template → call → close in under a week for our first three clients. The ROI on this program is insane.
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">TK</div>
+            <div>
+              <div class="testimonial-card__name">Thomas Krause</div>
+              <div class="testimonial-card__role">MD, Krawl Digital GmbH (Munich)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY FORM -->
+  <section class="section apply-section" id="apply">
+    <div class="container" style="text-align:center;">
+      <div class="section-label">Limited Access</div>
+      <div class="section-title">Get Instant Partner Access<br><span style="color:var(--gold)">— Only 20 Spots</span></div>
+      <p class="section-sub" style="margin:0 auto 16px;">
+        Skip the waitlist. Secure your agency license now and get onboarded within 24 hours.
+      </p>
+      <a href="https://buy.stripe.com/6oUdR99js36aeQjfifabK0j" class="btn btn--gold" style="font-size:1.2rem;padding:18px 40px;display:inline-block;margin-bottom:16px;">
+        Secure Agency License — €12,500 →
+      </a>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:32px;">Instant access. Onboarding call scheduled within 24h. 30-day money-back guarantee.</p>
+      <hr style="border-color:rgba(244,196,48,0.2);margin:24px 0;" />
+      <p class="section-sub" style="margin:0 auto 4px;font-size:0.9rem;">
+        Prefer to talk first? Fill in the form below and we'll reach out within 24 hours.
+      </p>
+      <div class="apply-form" style="margin-top:16px;">
+        <form action="mailto:partners@theprofitfactory.ai" method="post" enctype="text/plain">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Work Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@youragency.com" required />
+          </div>
+          <div class="form-group">
+            <label for="agency">Agency Name</label>
+            <input type="text" id="agency" name="agency" placeholder="Velocity Digital" required />
+          </div>
+          <div class="form-group">
+            <label for="website">Agency Website</label>
+            <input type="url" id="website" name="website" placeholder="https://youragency.com" />
+          </div>
+          <button type="submit" class="form-submit">Request a Call →</button>
+        </form>
+        <p class="form-disclaimer">No commitments. We'll reach out within 24 hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 theprofitfactory.ai — Agency Partner Program</p>
+    <p style="margin-top:6px;">Questions? Email <a href="mailto:partners@theprofitfactory.ai" style="color:var(--gold)">partners@theprofitfactory.ai</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width, initial-scale=1.0" data-next-head=""/><title data-next-head="">NovaSpark AI Suite — Dashboard Demo</title><meta name="robots" content="noindex" data-next-head=""/><link rel="preload" href="/_next/static/chunks/0u0nak9c8_v0v.css" as="style"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" data-next-head=""/><style data-next-head="">
+          *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+          :root {
+            --gold: #f59e0b;
+            --bg-card: #141414;
+            --bg: #0a0a0a;
+            --border: #2a2a2a;
+            --text-muted: #a0a0a0;
+            --text: #f0f0f0;
+            --sidebar-w: 220px;
+          }
+          html, body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+          a { color: inherit; text-decoration: none; }
+          button { font-family: inherit; cursor: pointer; }
+          input, select, textarea { font-family: inherit; }
+
+          .demo-banner {
+            background: linear-gradient(90deg, #1a0a00, #2a1200, #1a0a00);
+            border-bottom: 1px solid rgba(245,158,11,0.3);
+            color: var(--gold);
+            text-align: center;
+            padding: 0.55rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+          }
+          .demo-banner a { color: var(--gold); opacity: 0.9; text-decoration: underline; }
+          .demo-banner a:hover { opacity: 1; }
+
+          .app-header {
+            position: fixed;
+            top: 33px;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            z-index: 90;
+          }
+          .app-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: -0.5px;
+          }
+          .app-logo span { color: var(--text-muted); font-weight: 400; font-size: 0.85rem; margin-left: 0.5rem; }
+          .header-right { display: flex; align-items: center; gap: 1rem; }
+          .welcome-text { font-size: 0.9rem; color: var(--text-muted); }
+          .welcome-text strong { color: var(--text); }
+          .plan-badge {
+            background: rgba(245,158,11,0.12);
+            border: 1px solid rgba(245,158,11,0.25);
+            color: var(--gold);
+            padding: 0.3rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            white-space: nowrap;
+          }
+          .avatar {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), #d97706);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.85rem; color: #000;
+            flex-shrink: 0;
+          }
+
+          .app-layout {
+            display: flex;
+            padding-top: calc(33px + 56px);
+            min-height: 100vh;
+          }
+
+          .sidebar {
+            width: var(--sidebar-w);
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            top: calc(33px + 56px);
+            left: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 80;
+          }
+          .sidebar-nav { padding: 1rem 0.75rem; flex: 1; }
+          .sidebar-label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.5rem 0.75rem 0.4rem;
+          }
+          .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.6rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            transition: color 0.15s, background 0.15s;
+            margin-bottom: 2px;
+          }
+          .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+          .nav-item.active {
+            color: var(--gold);
+            background: rgba(245,158,11,0.1);
+            font-weight: 600;
+          }
+          .nav-icon { font-size: 1rem; flex-shrink: 0; }
+          .sidebar-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+          }
+          .sidebar-footer-text { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+
+          .main-content {
+            margin-left: var(--sidebar-w);
+            flex: 1;
+            padding: 2rem;
+            max-width: calc(100vw - var(--sidebar-w));
+          }
+
+          .page-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+          }
+          .page-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+
+          .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+          }
+          .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            transition: border-color 0.2s, transform 0.2s;
+          }
+          .stat-card:hover { border-color: rgba(245,158,11,0.3); transform: translateY(-1px); }
+          .stat-icon { font-size: 1.4rem; margin-bottom: 0.75rem; }
+          .stat-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.04em; }
+          .stat-value { font-size: 1.6rem; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 0.4rem; }
+          .stat-delta { font-size: 0.78rem; color: #4ade80; font-weight: 500; }
+
+          .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 1.5rem;
+          }
+
+          .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+          }
+          .card-header {
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .card-title { font-size: 0.95rem; font-weight: 700; }
+          .card-body { padding: 1.5rem; }
+
+          .form-group { margin-bottom: 1.1rem; }
+          .form-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em; }
+          .form-control {
+            width: 100%;
+            background: #0f0f0f;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.65rem 0.9rem;
+            color: var(--text);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.15s;
+          }
+          .form-control:focus { border-color: var(--gold); }
+          .form-control option { background: #1a1a1a; }
+
+          .btn-generate {
+            width: 100%;
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.1s;
+            margin-top: 0.5rem;
+          }
+          .btn-generate:hover { background: #fbbf24; transform: translateY(-1px); }
+          .btn-generate:active { transform: translateY(0); }
+
+          .generated-area {
+            background: #0f0f0f;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-top: 1.25rem;
+            white-space: pre-wrap;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: var(--text);
+            min-height: 180px;
+          }
+          .generated-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+          }
+          .generated-label::after {
+            content: 'Gegenereerd';
+            background: rgba(74,222,128,0.12);
+            color: #4ade80;
+            border: 1px solid rgba(74,222,128,0.2);
+            border-radius: 100px;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.7rem;
+          }
+
+          .copy-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            border-radius: 6px;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            margin-top: 0.75rem;
+          }
+          .copy-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+          .client-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+          }
+          .client-row:last-child { border-bottom: none; }
+          .client-row:hover { background: rgba(255,255,255,0.02); }
+          .client-info { display: flex; align-items: center; gap: 0.75rem; }
+          .client-avatar {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+          }
+          .client-name { font-size: 0.9rem; font-weight: 600; }
+          .client-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 1px; }
+          .client-actions { display: flex; align-items: center; gap: 0.5rem; }
+          .status-dot {
+            display: inline-block;
+            width: 7px; height: 7px;
+            background: #4ade80;
+            border-radius: 50%;
+            margin-right: 4px;
+          }
+          .status-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #4ade80;
+            background: rgba(74,222,128,0.1);
+            border: 1px solid rgba(74,222,128,0.2);
+            border-radius: 100px;
+            padding: 0.2rem 0.6rem;
+          }
+          .icon-btn {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            border-radius: 6px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.15s;
+          }
+          .icon-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+          .tab-row {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0;
+          }
+          .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: color 0.15s, border-color 0.15s;
+          }
+          .tab-btn:hover { color: var(--text); }
+          .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
+
+          .breadcrumb {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+          }
+          .breadcrumb-sep { opacity: 0.4; }
+
+          .badge-new {
+            font-size: 0.65rem;
+            background: rgba(245,158,11,0.15);
+            color: var(--gold);
+            border: 1px solid rgba(245,158,11,0.2);
+            border-radius: 100px;
+            padding: 0.1rem 0.4rem;
+            font-weight: 700;
+            margin-left: 0.3rem;
+          }
+
+          .activity-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 6px var(--gold);
+            animation: pulse-dot 2s infinite;
+            flex-shrink: 0;
+          }
+          @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+          }
+
+          .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.82rem;
+          }
+          .activity-item:last-child { border-bottom: none; }
+          .activity-text { color: var(--text); line-height: 1.4; }
+          .activity-time { color: var(--text-muted); font-size: 0.75rem; margin-top: 2px; }
+
+          @media (max-width: 1100px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .content-grid { grid-template-columns: 1fr; }
+          }
+          @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; max-width: 100vw; padding: 1rem; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .header-right .welcome-text { display: none; }
+          }
+        </style><link rel="stylesheet" href="/_next/static/chunks/0u0nak9c8_v0v.css" data-n-g=""/><noscript data-n-css=""></noscript><script src="/_next/static/chunks/14jh0uakqd.7k.js" defer=""></script><script src="/_next/static/chunks/0s_ddsrwq4yzj.js" defer=""></script><script src="/_next/static/chunks/0iikm-xjpaph7.js" defer=""></script><script src="/_next/static/chunks/03zhf1-syu0x-.js" defer=""></script><script src="/_next/static/chunks/turbopack-01cze0mn~0rkb.js" defer=""></script><script src="/_next/static/chunks/09.imebtypfyy.js" defer=""></script><script src="/_next/static/chunks/turbopack-10aq78sge4sqm.js" defer=""></script><script src="/_next/static/Gw9OIqwpXbl5fG-vlCdRW/_buildManifest.js" defer=""></script><script src="/_next/static/Gw9OIqwpXbl5fG-vlCdRW/_ssgManifest.js" defer=""></script><script src="/_next/static/Gw9OIqwpXbl5fG-vlCdRW/_clientMiddlewareManifest.js" defer=""></script></head><body><div id="__next"><div class="demo-banner">⚡ Live Demo — The Profit Factory White-Label Suite |<!-- --> <a href="https://theprofitfactory.ai/agency" target="_blank" rel="noopener noreferrer">theprofitfactory.ai/agency</a></div><header class="app-header"><div style="display:flex;align-items:center;gap:1rem"><div class="app-logo">NovaSpark AI Suite</div><span style="color:var(--border);font-size:1.2rem;line-height:1">|</span><span style="font-size:0.78rem;color:var(--text-muted);font-weight:500">Agency Dashboard</span></div><div class="header-right"><span class="plan-badge">Pro Plan — 12 active clients</span><span class="welcome-text">Welkom terug, <strong>Stefan</strong></span><div class="avatar">S</div></div></header><div class="app-layout"><aside class="sidebar"><nav class="sidebar-nav"><div class="sidebar-label">Hoofdmenu</div><button class="nav-item"><span class="nav-icon">▣</span>Dashboard</button><button class="nav-item"><span class="nav-icon">👥</span>Klanten</button><button class="nav-item active"><span class="nav-icon">✍️</span>Content Studio</button><button class="nav-item"><span class="nav-icon">⚡</span>Lead Generator<span class="badge-new">Nieuw</span></button><button class="nav-item"><span class="nav-icon">✉️</span>Email Automation</button><button class="nav-item"><span class="nav-icon">📊</span>Rapporten</button><button class="nav-item"><span class="nav-icon">⚙️</span>Instellingen</button></nav><div class="sidebar-footer"><div class="sidebar-footer-text"><div style="font-weight:600;color:var(--text);margin-bottom:0.2rem;font-size:0.8rem">NovaSpark AI Suite</div><div>Versie 2.4.1 · Pro Plan</div><div style="margin-top:0.3rem;color:rgba(245,158,11,0.7);font-size:0.72rem">Powered by The Profit Factory</div></div></div></aside><main class="main-content"><div class="breadcrumb"><span>NovaSpark AI Suite</span><span class="breadcrumb-sep">›</span><span style="color:var(--text)">Content Studio</span></div><div class="page-title">Content Studio</div><div class="page-subtitle">Genereer professionele content in seconden met AI — voor elk kanaal en elke klant.</div><div class="stats-row"><div class="stat-card"><div class="stat-icon">👥</div><div class="stat-label">Actieve Klanten</div><div class="stat-value">12</div><div class="stat-delta">+2 deze maand</div></div><div class="stat-card"><div class="stat-icon">✍️</div><div class="stat-label">Content gegenereerd</div><div class="stat-value">1,847 stuks</div><div class="stat-delta">+143 deze week</div></div><div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-label">Leads verwerkt</div><div class="stat-value">342</div><div class="stat-delta">+28 vandaag</div></div><div class="stat-card"><div class="stat-icon">💰</div><div class="stat-label">Omzet gegenereerd</div><div class="stat-value">€48,200</div><div class="stat-delta">+€3,400 deze maand</div></div></div><div class="content-grid"><div style="display:flex;flex-direction:column;gap:1.5rem"><div class="card"><div class="card-header"><span class="card-title">✍️ Content Studio</span><div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:#4ade80"><div class="activity-dot"></div>AI actief</div></div><div style="padding:0 1.5rem"><div class="tab-row"><button class="tab-btn active">Genereer</button><button class="tab-btn">Geschiedenis</button><button class="tab-btn">Templates</button></div></div><div class="card-body" style="padding-top:0.5rem"><form><div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem"><div class="form-group"><label class="form-label">Type content</label><select class="form-control"><option value="linkedin" selected="">LinkedIn Post</option><option value="blog">Blog Artikel</option><option value="email">Email</option><option value="ad">Ad Copy</option></select></div><div class="form-group"><label class="form-label">Toon</label><select class="form-control"><option value="professioneel" selected="">Professioneel</option><option value="casual">Casual</option><option value="urgent">Urgent</option></select></div></div><div class="form-group"><label class="form-label">Onderwerp of product</label><input type="text" class="form-control" placeholder="bijv. Social media marketing voor MKB-bedrijven..." value=""/></div><div class="form-group" style="margin-bottom:0"><label class="form-label">Klant (optioneel)</label><select class="form-control"><option value="">— Geen klant gekoppeld —</option><option>Bakkerij de Groot</option><option>TechStart BV</option><option>Mode Atelier Nina</option></select></div><button type="submit" class="btn-generate" style="margin-top:1.25rem">✨ Genereer Content</button></form><div style="margin-top:1.5rem"><div class="generated-label">Gegenereerde content</div><div class="generated-area">🚀 Waarom 87% van de kleine bedrijven social media verkeerd aanpakt — en hoe jij dat anders doet.
+
+De meeste ondernemers posten willekeurig. Geen strategie, geen consistentie, geen resultaat.
+
+Hier is wat wij doen dat werkt:
+
+✅ Elke post heeft één doel (bewustwording, vertrouwen of conversie)
+✅ We publiceren op vaste tijden — algoritmes houden van regelmaat
+✅ We reageren binnen 30 minuten op elk comment
+
+Het resultaat? +340% meer bereik in 8 weken — zonder extra advertentiebudget.
+
+Wil jij ook een contentplan dat écht werkt? Drop een 🙋 in de comments en ik stuur je onze gratis template.
+
+#ContentMarketing #Ondernemen #SocialMediaStrategy #DigitalMarketing #Groei</div><div style="display:flex;gap:0.5rem;margin-top:0.75rem;flex-wrap:wrap"><button class="copy-btn">📋 Kopiëren</button><button class="copy-btn">📅 Inplannen</button><button class="copy-btn">🔄 Regenereer</button><button class="copy-btn" style="margin-left:auto">💾 Opslaan in bibliotheek</button></div></div></div></div><div class="card"><div class="card-header"><span class="card-title">📋 Recente activiteit</span><button class="icon-btn">Alles tonen</button></div><div class="card-body" style="padding:0.75rem 1.5rem"><div class="activity-item"><div class="activity-dot" style="margin-top:4px;background:var(--gold);box-shadow:0 0 6px var(--gold)"></div><div><div class="activity-text">LinkedIn post gegenereerd voor Bakkerij de Groot</div><div class="activity-time">2 min geleden</div></div></div><div class="activity-item"><div class="activity-dot" style="margin-top:4px;background:#555;box-shadow:none"></div><div><div class="activity-text">3 leads verwerkt — TechStart BV campagne</div><div class="activity-time">14 min geleden</div></div></div><div class="activity-item"><div class="activity-dot" style="margin-top:4px;background:#555;box-shadow:none"></div><div><div class="activity-text">E-mail sequence gestart voor Mode Atelier Nina</div><div class="activity-time">1 uur geleden</div></div></div><div class="activity-item"><div class="activity-dot" style="margin-top:4px;background:#555;box-shadow:none"></div><div><div class="activity-text">Blog artikel gepubliceerd: &quot;10 tips voor lokale SEO&quot;</div><div class="activity-time">3 uur geleden</div></div></div><div class="activity-item"><div class="activity-dot" style="margin-top:4px;background:#555;box-shadow:none"></div><div><div class="activity-text">Rapport gegenereerd — maandoverzicht april 2025</div><div class="activity-time">Gisteren 17:42</div></div></div></div></div></div><div style="display:flex;flex-direction:column;gap:1.5rem"><div class="card"><div class="card-header"><span class="card-title">👥 Klanten</span><button class="icon-btn" style="font-size:0.78rem;background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.2);color:var(--gold)">+ Nieuwe klant</button></div><div><div class="client-row"><div class="client-info"><div class="client-avatar">🥐</div><div><div class="client-name">Bakkerij de Groot</div><div class="client-meta">E-commerce<!-- --> · <!-- -->Pro<!-- --> · Lid sinds <!-- -->Jan 2025</div></div></div><div class="client-actions"><span class="status-badge"><span class="status-dot"></span>Active</span><button class="icon-btn">✏️</button><button class="icon-btn">→</button></div></div><div class="client-row"><div class="client-info"><div class="client-avatar">💻</div><div><div class="client-name">TechStart BV</div><div class="client-meta">SaaS<!-- --> · <!-- -->Business<!-- --> · Lid sinds <!-- -->Feb 2025</div></div></div><div class="client-actions"><span class="status-badge"><span class="status-dot"></span>Active</span><button class="icon-btn">✏️</button><button class="icon-btn">→</button></div></div><div class="client-row"><div class="client-info"><div class="client-avatar">👗</div><div><div class="client-name">Mode Atelier Nina</div><div class="client-meta">Retail<!-- --> · <!-- -->Pro<!-- --> · Lid sinds <!-- -->Mrt 2025</div></div></div><div class="client-actions"><span class="status-badge"><span class="status-dot"></span>Active</span><button class="icon-btn">✏️</button><button class="icon-btn">→</button></div></div></div><div style="padding:0.75rem 1.5rem;border-top:1px solid var(--border)"><button class="icon-btn" style="width:100%;text-align:center;padding:0.5rem;font-size:0.82rem">Alle 12 klanten tonen →</button></div></div><div class="card"><div class="card-header"><span class="card-title">📊 Gebruik deze maand</span></div><div class="card-body"><div style="margin-bottom:1.1rem"><div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.4rem"><span style="color:var(--text-muted)">Content gegenereerd</span><span style="font-weight:600">143<!-- --> <span style="color:var(--text-muted);font-weight:400">/ <!-- -->500</span></span></div><div style="background:var(--border);border-radius:100px;height:6px;overflow:hidden"><div style="background:linear-gradient(90deg, var(--gold), #fbbf24);width:29%;height:100%;border-radius:100px;transition:width 0.4s"></div></div></div><div style="margin-bottom:1.1rem"><div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.4rem"><span style="color:var(--text-muted)">Leads verwerkt</span><span style="font-weight:600">28<!-- --> <span style="color:var(--text-muted);font-weight:400">/ <!-- -->100</span></span></div><div style="background:var(--border);border-radius:100px;height:6px;overflow:hidden"><div style="background:linear-gradient(90deg, var(--gold), #fbbf24);width:28%;height:100%;border-radius:100px;transition:width 0.4s"></div></div></div><div style="margin-bottom:1.1rem"><div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.4rem"><span style="color:var(--text-muted)">E-mails verstuurd</span><span style="font-weight:600">312<!-- --> <span style="color:var(--text-muted);font-weight:400">/ <!-- -->1000</span></span></div><div style="background:var(--border);border-radius:100px;height:6px;overflow:hidden"><div style="background:linear-gradient(90deg, var(--gold), #fbbf24);width:31%;height:100%;border-radius:100px;transition:width 0.4s"></div></div></div><div style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.15);border-radius:8px;padding:0.75rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;line-height:1.5"><span style="color:var(--gold);font-weight:600">Pro Plan</span> — Onbeperkt gebruik per klant. Geen extra kosten.</div></div></div></div></div><div style="margin-top:2rem;padding:1rem 1.5rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;font-size:0.78rem;color:var(--text-muted);text-align:center;line-height:1.6">Dit is een live demo van The Profit Factory white-label suite. Eigen branding, eigen domein.<!-- --> <a href="https://theprofitfactory.ai/agency" style="color:var(--gold);text-decoration:underline" target="_blank" rel="noopener noreferrer">theprofitfactory.ai/agency</a></div></main></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/agency-demo","query":{},"buildId":"Gw9OIqwpXbl5fG-vlCdRW","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>

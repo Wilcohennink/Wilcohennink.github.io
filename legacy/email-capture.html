@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚀 As Seen on Product Hunt — Get 3 Free AI Prompts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      color: #fff;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 520px;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      text-align: center;
+    }
+
+    /* Product Hunt banner */
+    .ph-banner {
+      background: linear-gradient(90deg, #ff6154, #ff8c00);
+      border-radius: 12px;
+      padding: 10px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .ph-banner .ph-logo {
+      font-size: 1.2rem;
+    }
+
+    /* Day badge */
+    .day-badge {
+      display: inline-block;
+      background: rgba(255, 97, 84, 0.15);
+      border: 1px solid rgba(255, 97, 84, 0.4);
+      color: #ff8c72;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 2.1rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #fff 60%, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Coupon box */
+    .coupon-box {
+      background: linear-gradient(135deg, rgba(244,196,48,0.12), rgba(239,68,68,0.08));
+      border: 1.5px dashed rgba(244,196,48,0.5);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .coupon-left {
+      text-align: left;
+    }
+
+    .coupon-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .coupon-code {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #f4c430;
+      letter-spacing: 0.1em;
+    }
+
+    .coupon-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .coupon-discount {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #ff8c72;
+    }
+
+    .coupon-today {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.5);
+      display: block;
+    }
+
+    .bullets {
+      text-align: left;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bullet {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .bullet-icon {
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="email"]::placeholder { color: rgba(255,255,255,0.4); }
+    input[type="email"]:focus { border-color: #7c3aed; }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(90deg, #7c3aed, #4f46e5);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      font-family: inherit;
+    }
+
+    button[type="submit"]:hover { opacity: 0.9; transform: translateY(-1px); }
+    button[type="submit"]:active { transform: translateY(0); }
+
+    .privacy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 8px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 28px 0;
+    }
+
+    .upsell {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+
+    .upsell-coupon-hint {
+      font-size: 0.78rem;
+      color: #f4c430;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .cta-link {
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .cta-link:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* Thank you state */
+    #thank-you {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    #thank-you .check {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    #thank-you h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    #thank-you p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 32px 20px; }
+      .coupon-box { flex-direction: column; text-align: center; }
+      .coupon-left, .coupon-right { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- Form state -->
+  <div id="form-section">
+
+    <!-- Product Hunt banner -->
+    <div class="ph-banner">
+      <span class="ph-logo">🐱</span>
+      <span>As seen on Product Hunt — Day 5 Launch!</span>
+    </div>
+
+    <div class="day-badge">🚀 Day 5 — Launch Special</div>
+    <div class="badge">Free Gift for PH Visitors</div>
+
+    <h1>Get 3 Free AI Prompts That Save 5 Hours/Week</h1>
+    <p class="subtitle">Used by 500+ entrepreneurs to automate repetitive tasks and reclaim their time — instantly.</p>
+
+    <!-- Coupon box -->
+    <div class="coupon-box">
+      <div class="coupon-left">
+        <div class="coupon-label">Your exclusive PH coupon</div>
+        <div class="coupon-code">PHLAUNCH</div>
+      </div>
+      <div class="coupon-right">
+        <div class="coupon-discount">20% OFF</div>
+        <span class="coupon-today">Today only</span>
+      </div>
+    </div>
+
+    <div class="bullets">
+      <div class="bullet">
+        <span class="bullet-icon">✓</span>
+        <span>Write emails in 30 seconds flat</span>
+      </div>
+      <div class="bullet">
+        <span class="bullet-icon">✓</span>
+        <span>Generate a week of social posts in 5 minutes</span>
+      </div>
+      <div class="bullet">
+        <span class="bullet-icon">✓</span>
+        <span>Automate client reports — no more copy-paste</span>
+      </div>
+    </div>
+
+    <form name="email-capture" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="capture-form">
+      <!-- Netlify hidden input -->
+      <input type="hidden" name="form-name" value="email-capture">
+      <!-- Honeypot spam protection -->
+      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+      <input type="email" name="email" placeholder="Your best email address" required autocomplete="email">
+      <button type="submit">Send Me the Free Prompts →</button>
+    </form>
+    <p class="privacy">No spam, ever. Unsubscribe anytime.</p>
+
+    <hr class="divider">
+
+    <p class="upsell">Want the complete AI Profit Toolkit? Get all 47 prompts + video guides.</p>
+    <p class="upsell-coupon-hint">Use code PHLAUNCH for 20% off — today only!</p>
+    <a href="https://buy.stripe.com/7sYeVd0MWgX023x4DBabK00" class="cta-link" target="_blank" rel="noopener">
+      Get the Full Toolkit — €47 →
+    </a>
+  </div>
+
+  <!-- Thank you state -->
+  <div id="thank-you">
+    <div class="check">✅</div>
+    <h2>You're in!</h2>
+    <p>Check your inbox in the next 2 minutes.<br>Your 3 free AI prompts are on their way.</p>
+
+    <p class="upsell" style="color:rgba(255,255,255,0.6);font-size:.85rem;margin-bottom:6px;">
+      While you wait — grab the full toolkit at a special price:
+    </p>
+    <p style="color:#f4c430;font-size:0.78rem;font-weight:600;margin-bottom:14px;">Use code PHLAUNCH for 20% off — today only!</p>
+    <a href="https://buy.stripe.com/7sYeVd0MWgX023x4DBabK00" class="cta-link" target="_blank" rel="noopener">
+      Get the Full Toolkit — €47 →
+    </a>
+  </div>
+
+</div>
+
+<script>
+  const form = document.getElementById('capture-form');
+  const formSection = document.getElementById('form-section');
+  const thankYou = document.getElementById('thank-you');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    })
+    .then(() => {
+      formSection.style.display = 'none';
+      thankYou.style.display = 'block';
+    })
+    .catch(() => {
+      formSection.style.display = 'none';
+      thankYou.style.display = 'block';
+    });
+  });
+</script>
+
+</body>
+</html>

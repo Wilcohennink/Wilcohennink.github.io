@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1628;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d1f3c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0080FF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="textglow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="720" fill="url(#bg)"/>
+
+  <!-- Grid pattern overlay -->
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1a3060" stroke-width="0.5" opacity="0.4"/>
+  </pattern>
+  <rect width="1280" height="720" fill="url(#grid)"/>
+
+  <!-- Decorative circle top-right -->
+  <circle cx="1100" cy="150" r="300" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.08"/>
+  <circle cx="1100" cy="150" r="220" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.06"/>
+  <circle cx="1100" cy="150" r="140" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.1"/>
+
+  <!-- Decorative circle bottom-left -->
+  <circle cx="180" cy="600" r="200" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.06"/>
+  <circle cx="180" cy="600" r="120" fill="none" stroke="#00D4FF" stroke-width="0.5" opacity="0.05"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1280" height="4" fill="url(#gold)"/>
+
+  <!-- Left vertical accent -->
+  <rect x="80" y="40" width="3" height="640" fill="url(#blue)" opacity="0.3"/>
+
+  <!-- Live badge -->
+  <rect x="100" y="100" width="130" height="38" rx="4" fill="#FF3B30" opacity="0.9"/>
+  <text x="165" y="124" font-family="'Arial', sans-serif" font-size="16" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">LIVE</text>
+
+  <!-- Webinar label -->
+  <text x="248" y="124" font-family="'Arial', sans-serif" font-size="14" font-weight="600" fill="#00D4FF" letter-spacing="4" text-anchor="start">WEBINAR</text>
+
+  <!-- Main headline -->
+  <text x="100" y="240" font-family="'Arial Black', 'Arial', sans-serif" font-size="64" font-weight="900" fill="#FFFFFF" filter="url(#textglow)">White-Label</text>
+  <text x="100" y="320" font-family="'Arial Black', 'Arial', sans-serif" font-size="64" font-weight="900" fill="url(#gold)">AI Suite</text>
+  <text x="100" y="400" font-family="'Arial Black', 'Arial', sans-serif" font-size="52" font-weight="900" fill="#FFFFFF">— Live Demo</text>
+
+  <!-- Divider line -->
+  <rect x="100" y="430" width="600" height="2" fill="url(#gold)" opacity="0.6"/>
+
+  <!-- Date and time -->
+  <text x="100" y="475" font-family="'Arial', sans-serif" font-size="26" font-weight="700" fill="#00D4FF" letter-spacing="1">April 4, 2026  |  15:00 CET</text>
+
+  <!-- Host info -->
+  <text x="100" y="525" font-family="'Arial', sans-serif" font-size="20" font-weight="400" fill="#CCDDFF" opacity="0.85">Hosted by</text>
+  <text x="210" y="525" font-family="'Arial', sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">Wilco Hennink @ The Profit Factory</text>
+
+  <!-- CTA badge -->
+  <rect x="100" y="570" width="340" height="52" rx="6" fill="url(#gold)" opacity="0.15"/>
+  <rect x="100" y="570" width="340" height="52" rx="6" fill="none" stroke="url(#gold)" stroke-width="1.5"/>
+  <text x="270" y="602" font-family="'Arial', sans-serif" font-size="18" font-weight="700" fill="#FFD700" text-anchor="middle" letter-spacing="1">FREE TO ATTEND — 20 SPOTS ONLY</text>
+
+  <!-- Right side decorative element - circuit lines -->
+  <line x1="900" y1="200" x2="1180" y2="200" stroke="#00D4FF" stroke-width="1" opacity="0.15"/>
+  <line x1="900" y1="220" x2="1000" y2="220" stroke="#00D4FF" stroke-width="1" opacity="0.1"/>
+  <line x1="950" y1="300" x2="1200" y2="300" stroke="#FFD700" stroke-width="1" opacity="0.1"/>
+  <line x1="870" y1="400" x2="1150" y2="400" stroke="#00D4FF" stroke-width="1" opacity="0.12"/>
+  <line x1="900" y1="500" x2="1180" y2="500" stroke="#FFD700" stroke-width="1" opacity="0.08"/>
+
+  <!-- Right side AI visual element -->
+  <circle cx="1040" cy="360" r="120" fill="none" stroke="#00D4FF" stroke-width="1.5" opacity="0.2"/>
+  <circle cx="1040" cy="360" r="85" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.15"/>
+  <circle cx="1040" cy="360" r="50" fill="#00D4FF" opacity="0.05"/>
+  <circle cx="1040" cy="360" r="10" fill="#00D4FF" opacity="0.6" filter="url(#glow)"/>
+  <!-- Node connections -->
+  <line x1="1040" y1="240" x2="1040" y2="310" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
+  <line x1="920" y1="360" x2="990" y2="360" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
+  <line x1="1090" y1="360" x2="1160" y2="360" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
+  <line x1="1040" y1="410" x2="1040" y2="480" stroke="#FFD700" stroke-width="1.5" opacity="0.25"/>
+  <circle cx="1040" cy="240" r="5" fill="#00D4FF" opacity="0.5"/>
+  <circle cx="1160" cy="360" r="5" fill="#00D4FF" opacity="0.5"/>
+  <circle cx="920" cy="360" r="5" fill="#FFD700" opacity="0.5"/>
+  <circle cx="1040" cy="480" r="5" fill="#FFD700" opacity="0.5"/>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="690" width="1280" height="30" fill="#061020" opacity="0.8"/>
+  <text x="640" y="710" font-family="'Arial', sans-serif" font-size="12" fill="#FFFFFF" opacity="0.4" text-anchor="middle" letter-spacing="2">THE PROFIT FACTORY  ·  THEPROFITFACTORY.NL</text>
+</svg>

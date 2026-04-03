@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Webinar: Hoe Bureaus €10K+ Verdienen met White-Label AI — theprofitfactory.ai</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a1a2e;
+      --navy-mid: #16213e;
+      --navy-light: #0f3460;
+      --gold: #f4c430;
+      --gold-dark: #d4a017;
+      --white: #ffffff;
+      --light: #e8e8f0;
+      --muted: #a0a0b8;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+    /* ─── NAV ─── */
+    nav {
+      background: var(--navy);
+      border-bottom: 1px solid rgba(244,196,48,.2);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    nav .brand {
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    nav .nav-link {
+      font-size: 0.875rem;
+      color: var(--light);
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    nav .nav-link:hover { opacity: 1; color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 64px 20px 48px;
+      text-align: center;
+    }
+    .hero__eyebrow {
+      display: inline-block;
+      background: rgba(244,196,48,.15);
+      color: var(--gold);
+      border: 1px solid rgba(244,196,48,.35);
+      border-radius: 50px;
+      padding: 4px 16px;
+      font-size: 0.8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .accent { color: var(--gold); }
+    .hero__meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244,196,48,.1);
+      border: 1px solid rgba(244,196,48,.25);
+      border-radius: 8px;
+      padding: 10px 20px;
+      margin-top: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .hero__meta .dot {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    /* ─── BULLETS ─── */
+    .learn-section {
+      background: var(--navy-mid);
+      padding: 48px 20px;
+    }
+    .learn-section h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: var(--white);
+    }
+    .learn-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .learn-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+    }
+    .learn-list li .icon {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+    .learn-list li p {
+      font-size: 0.95rem;
+      color: var(--light);
+    }
+    .learn-list li strong { color: var(--white); }
+
+    /* ─── FORM ─── */
+    .register-section {
+      padding: 56px 20px;
+      background: var(--navy);
+    }
+    .form-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(244,196,48,.25);
+      border-radius: 14px;
+      padding: 40px 36px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .form-card h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .form-card p.sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--light);
+      margin-bottom: 6px;
+      letter-spacing: .03em;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px;
+      color: var(--white);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,.09);
+    }
+    .form-group input::placeholder { color: var(--muted); }
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 1rem;
+      font-weight: 800;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-submit:hover { background: var(--gold-dark); transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+    .form-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    /* ─── THANK YOU (hidden by default) ─── */
+    .thankyou {
+      display: none;
+      text-align: center;
+      padding: 32px 0;
+    }
+    .thankyou .checkmark {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .thankyou h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .thankyou p {
+      color: var(--light);
+      font-size: 0.95rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      background: var(--navy-mid);
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    @media (max-width: 480px) {
+      .form-card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="/" class="brand">theprofitfactory.ai</a>
+    <a href="/webinar.html" class="nav-link">📅 Webinar</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__eyebrow">Gratis Live Webinar</div>
+      <h1>Hoe Bureaus <span class="accent">€10K+</span><br>Verdienen met<br>White-Label AI</h1>
+      <div class="hero__meta">
+        <span class="dot"></span>
+        Zaterdag 4 april 2026 &nbsp;·&nbsp; 15:00 CET
+      </div>
+    </div>
+  </section>
+
+  <!-- What you'll learn -->
+  <section class="learn-section">
+    <div class="container">
+      <h2>Wat je leert in dit webinar:</h2>
+      <ul class="learn-list">
+        <li>
+          <div class="icon">1</div>
+          <p><strong>Het White-Label AI-model stap voor stap</strong> — Hoe je AI-diensten verkoopt onder je eigen merknaam zonder zelf te hoeven coderen, én direct een marge van 70–90% pakt.</p>
+        </li>
+        <li>
+          <div class="icon">2</div>
+          <p><strong>De exacte scriptlijnen en aanbiedingsstructuur</strong> — Welke woorden bureaus gebruiken om klanten te overtuigen €1.500–€5.000/maand te betalen voor AI-automatisering.</p>
+        </li>
+        <li>
+          <div class="icon">3</div>
+          <p><strong>Van 0 naar €10K+ in 30 dagen</strong> — Het bewezen stappenplan: klant aantrekken, onboarden en maandelijks terugkerende omzet opbouwen met minimale overhead.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Registration form -->
+  <section class="register-section">
+    <div class="container">
+      <div class="form-card">
+        <div id="form-container">
+          <h2>Reserveer je gratis plek</h2>
+          <p class="sub">Beperkt aantal plaatsen beschikbaar — meld je nu aan.</p>
+          <form id="webinar-form" action="https://formspree.io/f/xyzpqrst" method="POST">
+            <input type="hidden" name="_subject" value="Webinar aanmelding: Hoe Bureaus €10K+ Verdienen met White-Label AI" />
+            <div class="form-group">
+              <label for="name">Naam</label>
+              <input type="text" id="name" name="name" placeholder="Jouw volledige naam" required />
+            </div>
+            <div class="form-group">
+              <label for="email">E-mailadres</label>
+              <input type="email" id="email" name="email" placeholder="jouw@email.nl" required />
+            </div>
+            <button type="submit" class="btn-submit">Ja, ik doe mee! Stuur mij de Zoom-link →</button>
+            <p class="form-note">Geen spam. De Zoom-link ontvang je 1 uur voor aanvang.</p>
+          </form>
+        </div>
+        <div class="thankyou" id="thankyou">
+          <div class="checkmark">✅</div>
+          <h3>Je bent aangemeld!</h3>
+          <p>Bedankt! Je ontvangt de Zoom-link <strong>1 uur voor aanvang</strong> (15 april om 14:00 CET) op je e-mailadres.</p>
+          <p style="margin-top:10px; color: var(--muted);">Tot zaterdag 4 april om 15:00 CET!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 theprofitfactory.ai &nbsp;·&nbsp; Alle rechten voorbehouden
+  </footer>
+
+  <script>
+    const form = document.getElementById('webinar-form');
+    const formContainer = document.getElementById('form-container');
+    const thankyou = document.getElementById('thankyou');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        // Show thank-you regardless of Formspree status (placeholder endpoint)
+        formContainer.style.display = 'none';
+        thankyou.style.display = 'block';
+      } catch (err) {
+        formContainer.style.display = 'none';
+        thankyou.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

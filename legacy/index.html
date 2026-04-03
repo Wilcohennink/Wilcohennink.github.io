@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The AI Automation Toolkit — theprofitfactory.ai</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a1a2e;
+      --navy-mid: #16213e;
+      --navy-light: #0f3460;
+      --gold: #f4c430;
+      --gold-dark: #d4a017;
+      --white: #ffffff;
+      --light: #e8e8f0;
+      --muted: #a0a0b8;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── Layout helpers ─── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    .section { padding: 64px 0; }
+    .section--alt { background: var(--navy-mid); }
+    .section--dark { background: var(--navy-light); }
+
+    /* ─── NAV ─── */
+    nav {
+      background: var(--navy);
+      border-bottom: 1px solid rgba(244,196,48,.2);
+      padding: 16px 20px;
+      text-align: center;
+    }
+    nav .brand {
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ─── WEBINAR BANNER ─── */
+    .webinar-banner {
+      background: linear-gradient(90deg, #1a1200, #2a1d00);
+      border-bottom: 1px solid rgba(244,196,48,.3);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 48px 10px 20px;
+      font-size: .875rem;
+      line-height: 1.4;
+      position: relative;
+    }
+    .webinar-banner a { color: var(--gold); text-decoration: underline; }
+    .webinar-banner__close {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: rgba(255,255,255,.5);
+      cursor: pointer; font-size: 1rem; line-height: 1; padding: 4px;
+    }
+    .webinar-banner__close:hover { color: var(--white); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 80px 20px 64px;
+      text-align: center;
+    }
+    .hero__eyebrow {
+      display: inline-block;
+      background: rgba(244,196,48,.15);
+      color: var(--gold);
+      border: 1px solid rgba(244,196,48,.35);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -.01em;
+    }
+    .hero h1 .accent { color: var(--gold); }
+    .hero__sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--light);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    /* CTA Buttons */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+    .btn--gold {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .btn--gold:hover { background: #ffd84d; }
+    .btn--outline {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+    }
+    .btn--outline:hover { background: rgba(244,196,48,.08); }
+    .hero__note { font-size: .8rem; color: var(--muted); margin-top: 10px; }
+
+    /* ─── VALUE PROPS ─── */
+    .props {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+    }
+    .prop-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(244,196,48,.15);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .prop-card__icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .prop-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .prop-card p { font-size: .9rem; color: var(--light); }
+
+    /* ─── WHAT YOU GET ─── */
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .section-title .accent { color: var(--gold); }
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 40px;
+      font-size: .95rem;
+    }
+    .contents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .content-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .content-item__check {
+      background: var(--gold);
+      color: var(--navy);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .content-item__text { font-size: .88rem; color: var(--light); }
+    .content-item__text strong { color: var(--white); display: block; font-size: .92rem; margin-bottom: 2px; }
+
+    /* ─── GUARANTEE ABOVE PRICING ─── */
+    .guarantee-above-pricing {
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      background: rgba(34,197,94,.08);
+      border: 1px solid rgba(34,197,94,.25);
+      border-radius: 100px;
+      padding: .45rem 1.2rem;
+      font-size: .85rem; color: #86efac;
+      max-width: 400px; margin: 0 auto 1.5rem;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section { padding: 64px 0; }
+    .faq-section .faq-title { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: .5rem; }
+    .faq-section .faq-subtitle { text-align: center; color: var(--muted); margin-bottom: 2.5rem; font-size: .95rem; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,.08); }
+    .faq-item summary {
+      list-style: none; cursor: pointer; padding: 1.1rem 0;
+      font-weight: 600; font-size: .95rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 1.4rem; color: var(--gold); flex-shrink: 0; margin-left: 1rem; }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-answer { padding: .25rem 0 1.25rem; color: var(--muted); font-size: .9rem; line-height: 1.7; }
+    .faq-answer a { color: var(--gold); text-decoration: underline; }
+
+    /* ─── PRICING ─── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .plan-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      transition: transform .2s;
+    }
+    .plan-card:hover { transform: translateY(-4px); }
+    .plan-card--featured {
+      border-color: var(--gold);
+      background: rgba(244,196,48,.06);
+    }
+    .plan-card__badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--navy);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 50px;
+    }
+    .plan-card__name {
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .plan-card__price {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .plan-card__price sup { font-size: 1.3rem; vertical-align: top; margin-top: 8px; }
+    .plan-card__period { font-size: .8rem; color: var(--muted); margin-bottom: 24px; }
+    .plan-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .plan-features li {
+      font-size: .88rem;
+      color: var(--light);
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .plan-features li::before {
+      content: "✓";
+      color: var(--gold);
+      font-weight: 900;
+      font-size: .8rem;
+      flex-shrink: 0;
+    }
+    .btn--primary {
+      width: 100%;
+      text-align: center;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 14px;
+      border-radius: var(--radius);
+      font-weight: 800;
+      font-size: 1rem;
+      transition: background .15s, transform .15s;
+      display: block;
+    }
+    .btn--primary:hover { background: #ffd84d; transform: translateY(-2px); }
+    .plan-card--featured .btn--primary { box-shadow: 0 6px 20px rgba(244,196,48,.4); }
+
+    /* ─── URGENCY SECTION ─── */
+    .urgency {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      text-align: center;
+      padding: 48px 20px;
+    }
+    .urgency h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .urgency p { color: var(--light); max-width: 520px; margin: 0 auto 28px; font-size: .95rem; }
+    .urgency-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .badge {
+      background: rgba(244,196,48,.12);
+      border: 1px solid rgba(244,196,48,.3);
+      color: var(--gold);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: 600;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #111120;
+      border-top: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+      padding: 32px 20px;
+    }
+    footer .footer-brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    footer p { font-size: .8rem; color: var(--muted); }
+
+    /* ─── TEAM PRICING ─── */
+    .team-pricing__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .team-pricing__card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      transition: transform .2s;
+    }
+    .team-pricing__card:hover { transform: translateY(-4px); }
+    .team-pricing__card--featured {
+      border-color: var(--gold);
+      background: rgba(244,196,48,.06);
+    }
+    .team-pricing__badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--navy);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 50px;
+    }
+    .team-pricing__card h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .team-pricing__seats {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .team-pricing__price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .team-pricing__price span {
+      font-size: .8rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+    .team-pricing__pitch {
+      font-size: .88rem;
+      color: var(--light);
+      margin-bottom: 24px;
+    }
+    .team-pricing__subscription {
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 20px;
+    }
+    .team-pricing__subscription a { color: var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .hero { padding: 56px 20px 48px; }
+      .btn { padding: 12px 20px; font-size: .9rem; }
+      .plan-card { padding: 32px 20px; }
+      .team-pricing__card { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Webinar Banner -->
+  <div class="webinar-banner" id="webinarBanner">
+    📅 <strong>Live webinar morgen (4 april, 15:00 CET):</strong> How agencies make €10K+/month with AI → <a href="/webinar.html">Register: theprofitfactory.ai/webinar</a>
+    <button class="webinar-banner__close" onclick="document.getElementById('webinarBanner').style.display='none'" aria-label="Sluiten">✕</button>
+  </div>
+
+  <!-- Nav -->
+  <nav style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:16px 20px;">
+    <div class="brand">theprofitfactory.ai</div>
+    <a href="/webinar.html" style="font-size:0.875rem;color:#f4c430;font-weight:600;opacity:0.9;text-decoration:none;">📅 Live Webinar 4 apr →</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__eyebrow">New Release 2024</div>
+      <h1>The <span class="accent">AI Automation</span><br>Toolkit</h1>
+      <p class="hero__sub">
+        90+ battle-tested prompts, templates &amp; guides to save time, automate tasks, and grow your income — starting today.
+      </p>
+      <div class="btn-group">
+        <a href="https://buy.stripe.com/7sYeVd0MWgX023x4DBabK00" class="btn btn--outline">Starter — €47</a>
+        <a href="https://buy.stripe.com/dRm5kDfHQ9uy5fJ9XVabK01" class="btn btn--gold">Pro — €97</a>
+        <a href="https://buy.stripe.com/5kQ5kD67gayC8rV7PNabK02" class="btn btn--outline">Complete — €197</a>
+      </div>
+      <p class="hero__note">Instant digital delivery &bull; Secure checkout via Stripe &bull; No subscriptions</p>
+    </div>
+  </section>
+
+  <!-- Value Props -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="props">
+        <div class="prop-card">
+          <span class="prop-card__icon">⏱️</span>
+          <h3>Save Hours Every Week</h3>
+          <p>Stop writing from scratch. Use ready-made prompts and templates that work instantly.</p>
+        </div>
+        <div class="prop-card">
+          <span class="prop-card__icon">💰</span>
+          <h3>Make More Money</h3>
+          <p>Use AI to deliver faster, charge more, and land better clients — without working more hours.</p>
+        </div>
+        <div class="prop-card">
+          <span class="prop-card__icon">🤖</span>
+          <h3>Automate Your Tasks</h3>
+          <p>Workflows, content, research, email — automate the repetitive stuff so you can focus on growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Get -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Everything Inside the <span class="accent">Toolkit</span></h2>
+      <p class="section-sub">One purchase. Instant access. Lifetime updates on the Complete plan.</p>
+      <div class="contents-grid">
+        <div class="content-item">
+          <div class="content-item__check">✓</div>
+          <div class="content-item__text"><strong>90+ AI Prompts</strong>Curated, tested prompts for business, content &amp; productivity</div>
+        </div>
+        <div class="content-item">
+          <div class="content-item__check">✓</div>
+          <div class="content-item__text"><strong>Content Templates</strong>Blog posts, emails, social media, sales copy &amp; more</div>
+        </div>
+        <div class="content-item">
+          <div class="content-item__check">✓</div>
+          <div class="content-item__text"><strong>Automation Guides</strong>Step-by-step workflows to automate your most common tasks</div>
+        </div>
+        <div class="content-item">
+          <div class="content-item__check">✓</div>
+          <div class="content-item__text"><strong>Business Growth Playbook</strong>Strategies to use AI for client acquisition and revenue growth</div>
+        </div>
+        <div class="content-item">
+          <div class="content-item__check">✓</div>
+          <div class="content-item__text"><strong>ChatGPT Mastery Guide</strong>Get 10x better results from any AI tool you use</div>
+        </div>
+        <div class="content-item">
+          <div class="content-item__check">✓</div>
+          <div class="content-item__text"><strong>Freelancer AI Toolkit</strong>Win more clients and deliver faster with AI-powered workflows</div>
+        </div>
+        <div class="content-item">
+          <div class="content-item__check">✓</div>
+          <div class="content-item__text"><strong>Bonus: Notion Dashboard</strong>Organize all your prompts and tools in one place</div>
+        </div>
+        <div class="content-item">
+          <div class="content-item__check">✓</div>
+          <div class="content-item__text"><strong>Instant PDF Download</strong>Get everything in your inbox within minutes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section section--alt" id="pricing">
+    <div class="container">
+      <h2 class="section-title">Choose Your <span class="accent">Plan</span></h2>
+      <p class="section-sub">All plans include instant digital delivery. One-time payment — no hidden fees.</p>
+      <div class="guarantee-above-pricing">
+        <span>✓</span>
+        <span>30-dagen geld-terug garantie — geen vragen gesteld</span>
+      </div>
+      <div class="pricing-grid">
+
+        <!-- Starter -->
+        <div class="plan-card">
+          <div class="plan-card__name">Starter</div>
+          <div class="plan-card__price"><sup>€</sup>47</div>
+          <div class="plan-card__period">one-time payment</div>
+          <ul class="plan-features">
+            <li>50+ Essential AI Prompts</li>
+            <li>Core Content Templates</li>
+            <li>Quick-Start Guide</li>
+            <li>PDF Download</li>
+          </ul>
+          <a href="https://buy.stripe.com/7sYeVd0MWgX023x4DBabK00" class="btn--primary">Get Starter →</a>
+        </div>
+
+        <!-- Pro (Featured) -->
+        <div class="plan-card plan-card--featured">
+          <div class="plan-card__badge">Most Popular</div>
+          <div class="plan-card__name">Pro</div>
+          <div class="plan-card__price"><sup>€</sup>97</div>
+          <div class="plan-card__period">one-time payment</div>
+          <ul class="plan-features">
+            <li>90+ Premium AI Prompts</li>
+            <li>Full Template Library</li>
+            <li>Automation Guides</li>
+            <li>Business Growth Playbook</li>
+            <li>ChatGPT Mastery Guide</li>
+            <li>Notion Dashboard Bonus</li>
+          </ul>
+          <a href="https://buy.stripe.com/dRm5kDfHQ9uy5fJ9XVabK01" class="btn--primary">Get Pro →</a>
+        </div>
+
+        <!-- Complete -->
+        <div class="plan-card">
+          <div class="plan-card__name">Complete</div>
+          <div class="plan-card__price"><sup>€</sup>197</div>
+          <div class="plan-card__period">one-time payment</div>
+          <ul class="plan-features">
+            <li>Everything in Pro</li>
+            <li>Freelancer AI Toolkit</li>
+            <li>Advanced Automation Systems</li>
+            <li>Lifetime Updates</li>
+            <li>Priority Access to New Content</li>
+            <li>VIP Community Access</li>
+          </ul>
+          <a href="https://buy.stripe.com/5kQ5kD67gayC8rV7PNabK02" class="btn--primary">Get Complete →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Pricing -->
+  <section class="section" id="team-pricing">
+    <div class="container">
+      <h2 class="section-title">Team &amp; <span class="accent">Multi-Seat</span> Licenses</h2>
+      <p class="section-sub">One payment. Your whole team unlocked. No per-seat surprises.</p>
+      <div class="team-pricing__grid">
+        <div class="team-pricing__card">
+          <h3>Team Starter</h3>
+          <p class="team-pricing__seats">5 seats</p>
+          <p class="team-pricing__price"><strong>€697</strong> <span>one-time</span></p>
+          <p class="team-pricing__pitch">For founding teams and freelancer pairs ready to grow.</p>
+          <a href="https://buy.stripe.com/3cIaEXanw9uy9vZeebabK0e" class="btn--primary">Buy Team Starter</a>
+        </div>
+        <div class="team-pricing__card team-pricing__card--featured">
+          <span class="team-pricing__badge">Most Popular</span>
+          <h3>Team Pro</h3>
+          <p class="team-pricing__seats">10 seats</p>
+          <p class="team-pricing__price"><strong>€1,197</strong> <span>one-time</span></p>
+          <p class="team-pricing__pitch">For growing SMEs and agencies scaling their revenue skills.</p>
+          <a href="https://buy.stripe.com/8x27sLeDM4ae6jN0nlabK0f" class="btn--primary">Buy Team Pro</a>
+        </div>
+        <div class="team-pricing__card">
+          <h3>Team Enterprise</h3>
+          <p class="team-pricing__seats">25 seats</p>
+          <p class="team-pricing__price"><strong>€2,497</strong> <span>one-time · includes onboarding call</span></p>
+          <p class="team-pricing__pitch">For companies rolling out profit skills across the entire team.</p>
+          <a href="https://buy.stripe.com/bJefZh8fo7mq5fJc63abK0g" class="btn--primary">Buy Team Enterprise</a>
+        </div>
+      </div>
+      <p class="team-pricing__subscription">Prefer monthly? From <strong>€29/seat/month</strong> — <a href="#subscription">see subscription options</a>.</p>
+    </div>
+  </section>
+
+  <!-- Urgency -->
+  <section class="urgency">
+    <div class="container">
+      <h2>🚀 Launch Special — <span style="color:var(--gold)">Limited Time</span></h2>
+      <p>These prices are available for our launch period only. Once we hit our first milestone, pricing goes up — permanently.</p>
+      <div class="urgency-badges">
+        <span class="badge">✓ Instant Access</span>
+        <span class="badge">✓ One-Time Payment</span>
+        <span class="badge">✓ Secure Checkout</span>
+        <span class="badge">✓ No Subscriptions</span>
+      </div>
+      <div class="btn-group">
+        <a href="https://buy.stripe.com/7sYeVd0MWgX023x4DBabK00" class="btn btn--outline">Starter — €47</a>
+        <a href="https://buy.stripe.com/dRm5kDfHQ9uy5fJ9XVabK01" class="btn btn--gold">Pro — €97 ← Best Value</a>
+        <a href="https://buy.stripe.com/5kQ5kD67gayC8rV7PNabK02" class="btn btn--outline">Complete — €197</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agency Partnership -->
+  <section style="background:#111;padding:5rem 0;border-top:1px solid rgba(255,255,255,0.08);text-align:center;">
+    <div class="container">
+      <div style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold,#f0c040);margin-bottom:1rem;">For Agencies</div>
+      <h2 style="font-size:2rem;margin-bottom:1.5rem;">White-label our AI Toolkit for your clients</h2>
+      <ul style="list-style:none;padding:0;margin:0 auto 2rem;max-width:540px;text-align:left;display:inline-block;">
+        <li style="margin-bottom:1rem;padding-left:2rem;position:relative;"><span style="position:absolute;left:0;">💰</span><strong>Higher margins</strong> — resell premium AI templates under your own brand at 3–5× markup</li>
+        <li style="margin-bottom:1rem;padding-left:2rem;position:relative;"><span style="position:absolute;left:0;">⚡</span><strong>Faster time-to-market</strong> — deliver client campaigns in days, not weeks, with ready-to-use workflows</li>
+        <li style="margin-bottom:1rem;padding-left:2rem;position:relative;"><span style="position:absolute;left:0;">🔒</span><strong>Stronger client retention</strong> — keep clients longer with ongoing AI tooling they can't get elsewhere</li>
+      </ul><br>
+      <a href="/agency.html" class="btn btn--gold">Apply for Agency Access →</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <h2 class="faq-title">Veelgestelde vragen</h2>
+      <p class="faq-subtitle">Alles wat je wilt weten voordat je de AI Toolkit in handen krijgt.</p>
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary class="faq-question">Wat zit er in de AI Toolkit?</summary>
+          <div class="faq-answer">
+            <p>De AI Toolkit bevat 100+ geteste prompts voor sales, marketing, copywriting en operations — direct inzetbaar in je eigen business. Afhankelijk van je tier krijg je ook tools zoals de AI Copy Generator, AI Name Generator, AI Resume Builder, cold outreach templates en B2B Lead Generation Templates. Het Complete pakket voegt daar de Competitor Intelligence Toolkit en de volledige AI Marketing Intensive training aan toe. Alles is plug-and-play: geen installatie, geen technische rompslomp.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Heb ik technische kennis nodig?</summary>
+          <div class="faq-answer">
+            <p>Nee, absoluut niet. De toolkit is ontworpen voor ondernemers die resultaten willen — niet voor techneuten. Kopieer een prompt, pas hem aan op je situatie en plak hem in ChatGPT of een andere AI-tool van jouw keuze. Als je weet hoe je een zoekopdracht intypt, kun je de toolkit gebruiken.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Welke AI-tools worden behandeld?</summary>
+          <div class="faq-answer">
+            <p>De toolkit werkt met alle populaire AI-platformen: ChatGPT (GPT-4o), Claude, Gemini en meer. Alle prompts zijn getest op meerdere platformen zodat je altijd sterke output krijgt, ongeacht welke tool je al gebruikt. Je hebt geen premium abonnement nodig — de gratis versie van ChatGPT volstaat voor de meeste toepassingen.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Hoe verschilt dit van gewoon ChatGPT gebruiken?</summary>
+          <div class="faq-answer">
+            <p>ChatGPT is krachtig, maar zonder de juiste prompts krijg je generieke, onbruikbare output. Onze 100+ geteste prompts zijn specifiek gebouwd voor ondernemers: ze leveren direct bruikbare copy, e-mails en strategieën. Je bespaart uren per week en krijgt betere resultaten — vanaf dag één.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Hoe krijg ik toegang na aankoop?</summary>
+          <div class="faq-answer">
+            <p>Direct na aankoop ontvang je een bevestigingsmail met een link naar je persoonlijk dashboard op <strong>theprofitfactory.ai/dashboard</strong>. Kom je er niet in? Stuur een mail naar <a href="mailto:support@theprofitfactory.ai">support@theprofitfactory.ai</a> en we helpen je binnen 24 uur.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Is er een geld-terug-garantie?</summary>
+          <div class="faq-answer">
+            <p>Ja. We bieden een <strong>30-dagen geld-terug-garantie</strong>, zonder vragen. Als je binnen 30 dagen na aankoop niet tevreden bent — om welke reden dan ook — krijg je je volledige bedrag terug. Stuur simpelweg een e-mail naar <a href="mailto:support@theprofitfactory.ai">support@theprofitfactory.ai</a>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Kan ik dit gebruiken voor klanten of mijn bureau?</summary>
+          <div class="faq-answer">
+            <p>Ja, absoluut. Alle prompts, templates en copy-tools mag je inzetten voor je eigen business én voor klantprojecten. Eén licentie is voor één gebruiker; voor teams bieden we speciale tarieven — neem contact op via <a href="mailto:support@theprofitfactory.ai">support@theprofitfactory.ai</a>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Zitten updates inbegrepen?</summary>
+          <div class="faq-answer">
+            <p>Ja, alle toekomstige updates zijn inbegrepen bij een eenmalige aankoop — zonder extra kosten. Nieuwe toevoegingen verschijnen automatisch in je dashboard zodra ze beschikbaar zijn.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Bieden jullie team-licenties aan?</summary>
+          <div class="faq-answer">
+            <p>Ja, we hebben speciale team-licenties beschikbaar voor bureaus en grotere teams. Neem contact op via <a href="mailto:support@theprofitfactory.ai">support@theprofitfactory.ai</a> met het aantal gebruikers en we sturen je een offerte op maat. Teams van 3 of meer gebruikers krijgen een schaalkorting.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Hoe lang duurt het voordat ik resultaten zie?</summary>
+          <div class="faq-answer">
+            <p>De meeste gebruikers zien direct resultaat: betere copy, snellere workflows en een tijdsbesparing van meerdere uren per week — al vanaf dag één. Je kunt de toolkit dezelfde dag na aankoop gebruiken en binnen 24 uur je eerste e-mailreeks, social post of propositie klaar hebben.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">theprofitfactory.ai</div>
+    <p>&copy; 2024 The Profit Factory. All rights reserved.</p>
+    <p style="margin-top:6px;">Questions? Contact us at hello@theprofitfactory.ai</p>
+  </footer>
+
+</body>
+</html>
